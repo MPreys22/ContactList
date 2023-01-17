@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  * A class that stores subclasses of Person as a contact list.
  * The user is presented with a menu of options and may add, sort,
@@ -12,8 +15,13 @@
 public class ContactList
 {
     // TODO: Create your array contacts
-
+    private ArrayList<Person> contacts = new ArrayList<Person>();
+    private Scanner input = new Scanner(System.in);
     // TODO: Write a Constructor
+
+    public ContactList() {
+
+    }
 
     public void printMenuOptions() {
         System.out.println("Menu: ");
@@ -34,6 +42,38 @@ public class ContactList
      */
     public void addContact() {
         // TODO: Complete the addContact method
+        System.out.println("Select a type of contact to add: \n" +
+                "1. Student \n" +
+                "2. Worker");
+        int choice = input.nextInt();
+        if(choice == 1) {
+            input.nextLine();
+            System.out.println("First Name");
+            String first = input.nextLine();
+            System.out.println("Last Name");
+            String last = input.nextLine();
+            System.out.println("Phone Number");
+            String number = input.nextLine();
+            System.out.println("Grade");
+            int grade = input.nextInt();
+            input.nextLine();
+            Student student = new Student(first, last, number, grade);
+            contacts.add(student);
+        } else if (choice == 2) {
+            input.nextLine();
+            System.out.println("First Name");
+            String first = input.nextLine();
+            System.out.println("Last Name");
+            String last = input.nextLine();
+            System.out.println("Phone Number");
+            String number = input.nextLine();
+            System.out.println("Terms");
+            int grade = input.nextInt();
+            input.nextLine();
+            President president = new President(first, last, number, grade);
+            contacts.add(president);
+        }
+        return;
     }
 
     /**
@@ -41,6 +81,9 @@ public class ContactList
      */
     public void printContacts() {
         // TODO: Complete the printContacts method
+        for(Person contact: contacts) {
+            System.out.println(contact);
+        }
     }
 
     /**
@@ -50,6 +93,21 @@ public class ContactList
      */
     public void sort(int sortBy) {
         // TODO: Complete the sort method
+        int n = contacts.size();
+        Person temp;
+        if(sortBy == 0) {
+            for (int i = 0; i < n - 1; i++) {
+                for (int j = 0; j < n - i - 1; j++) {
+                    int compare = contacts.get(j).getFirstName().compareTo(contacts.get(j+1).getFirstName());
+                    if(compare < 0){
+                         temp = contacts.get(j);
+                         contacts.set(j, contacts.get(j+1));
+                         contacts.set(j+1, temp);
+                    }
+                }
+            }
+        }
+
     }
 
     // TODO: Write searchByFirstName
@@ -72,9 +130,22 @@ public class ContactList
     public void run() {
         System.out.println("Welcome to your Contacts List");
         System.out.println("Please pick from the following menu options");
-        printMenuOptions();
-
+        int choice = 1;
         // TODO: Complete the run method
+        while(choice != 0) {
+            printMenuOptions();
+            choice = input.nextInt();
+            if (choice == 1) {
+                input.nextLine();
+                addContact();
+            } else if (choice == 2) {
+                sort(0);
+                printContacts();
+            } else if(choice == 5) {
+                input.nextLine();
+                printContacts();
+            }
+        }
     }
 
 
