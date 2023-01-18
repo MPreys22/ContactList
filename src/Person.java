@@ -1,4 +1,6 @@
 /**
+ * Michael Preys
+ * 1/19/2023
  * A class that represents a Person
  *
  * Created for Menlo School CS2
@@ -8,7 +10,6 @@
  */
 
 public class Person {
-    // TODO: Complete the Person class
     // Broader instance variables applying to all types of people
     private String firstName;
     private String lastName;

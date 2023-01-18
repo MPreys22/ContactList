@@ -1,4 +1,6 @@
 /**
+ * Michael Preys
+ * 1/19/2023
  * A subclass of Person that represents a Student
  *
  * Created for Menlo School CS2
@@ -8,7 +10,7 @@
  */
 
 public class Student extends Person{
-    // TODO: Modify and complete this class
+    // Grade variable unique to students
     private int grade;
 
     public Student(String firstName, String lastName, String phoneNumber, int grade) {
